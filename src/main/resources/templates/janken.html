@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>じゃんけんゲーム</title>
+</head>
+
+<body>
+  <h1>じゃんけんゲーム</h1>
+  <p>Hi <span th:text="${username}"></span> さん</p>
+
+  <h2>現在ログインしているユーザ</h2>
+  <ul>
+    <li th:each="entry : ${entry}" th:text="${entry}"></li>
+  </ul>
+
+  <h2>じゃんけんを選んでください</h2>
+  <ul>
+    <li>
+      <a th:href="@{/janken/play(hand='グー')}">グー</a>
+    </li>
+    <li>
+      <a th:href="@{/janken/play(hand='チョキ')}">チョキ</a>
+    </li>
+    <li>
+      <a th:href="@{/janken/play(hand='パー')}">パー</a>
+    </li>
+  </ul>
+
+  <div th:if="${myhand != null}">
+    <h3>結果</h3>
+    <p>あなたの手: <span th:text="${myhand}"></span></p>
+    <p>相手の手: <span th:text="${cpuHand}"></span></p>
+    <p>結果: <span th:text="${result}"></span></p>
+  </div>
+
+  <a href="/logout">ログアウト</a>
+</body>
+
+</html>
